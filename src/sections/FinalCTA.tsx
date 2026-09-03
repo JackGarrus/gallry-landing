@@ -1,6 +1,5 @@
 import { useState, type SyntheticEvent } from "react";
 
-import { supabase } from "../lib/supabase";
 import { track } from "../lib/analytics";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -8,6 +7,7 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 export default function FinalCTA() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>,
@@ -16,34 +16,47 @@ export default function FinalCTA() {
 
     const normalizedEmail = email.trim().toLowerCase();
 
-    if (!normalizedEmail) return;
-
+    setErrorMessage("");
     setStatus("submitting");
 
     const params = new URLSearchParams(window.location.search);
 
-    const { error } = await supabase.from("beta_signups").insert({
-      email: normalizedEmail,
-      utm_source: params.get("utm_source"),
-      utm_medium: params.get("utm_medium"),
-      utm_campaign: params.get("utm_campaign"),
-      referrer: document.referrer || null,
-    });
+    try {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          utm_source: params.get("utm_source"),
+          utm_medium: params.get("utm_medium"),
+          utm_campaign: params.get("utm_campaign"),
+          referrer: document.referrer || null,
+        }),
+      });
 
-    if (error) {
-      // Email already registered
-      if (error.code === "23505") {
-        setStatus("success");
+      if (!response.ok) {
+        const data = await response.json();
+
+        if (response.status === 400 && data.error === "Invalid email") {
+          setErrorMessage("Enter a valid email address");
+        } else {
+          setErrorMessage("Something went wrong. Try again.");
+        }
+
+        setStatus("error");
         return;
       }
 
+      track("Signup Submitted");
+      setStatus("success");
+    } catch (error) {
       console.error(error);
-      setStatus("error");
-      return;
-    }
 
-    track("Signup Submitted");
-    setStatus("success");
+      setErrorMessage("Something went wrong. Try again.");
+      setStatus("error");
+    }
   }
 
   return (
@@ -58,26 +71,33 @@ export default function FinalCTA() {
       </p>
 
       {status === "success" ? (
-        <p className="signup-success">[ YOU'RE ON THE LIST ]</p>
+        <p className="signup-success">[ CHECK YOUR INBOX ]</p>
       ) : (
-        <form className="signup-form" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="YOUR EMAIL"
-            required
-            disabled={status === "submitting"}
-          />
+        <>
+          <form className="signup-form" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
 
-          <button type="submit" disabled={status === "submitting"}>
-            {status === "submitting" ? "[ JOINING... ]" : "[ JOIN THE BETA ]"}
-          </button>
-        </form>
-      )}
+                if (status === "error") {
+                  setStatus("idle");
+                  setErrorMessage("");
+                }
+              }}
+              placeholder="YOUR EMAIL"
+              required
+              disabled={status === "submitting"}
+            />
 
-      {status === "error" && (
-        <p className="signup-error">Something went wrong. Try again.</p>
+            <button type="submit" disabled={status === "submitting"}>
+              {status === "submitting" ? "[ JOINING... ]" : "[ JOIN THE BETA ]"}
+            </button>
+          </form>
+
+          {status === "error" && <p className="signup-error">{errorMessage}</p>}
+        </>
       )}
 
       <p className="signup-note">No spam. Beta updates and invitations only.</p>
