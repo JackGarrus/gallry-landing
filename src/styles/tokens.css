@@ -1,0 +1,58 @@
+:root {
+  /* Gallry dark theme */
+  --color-background: #181c1e;
+
+  --color-surface: #202323;
+  --color-surface-2: #292d2b;
+  --color-surface-3: #343937;
+  --color-archive-surface: #263027;
+
+  --color-border: #373b39;
+  --color-border-strong: #f3f5f4;
+
+  --color-text: #f3f5f4;
+  --color-text-soft: #b8beba;
+  --color-text-muted: #858c88;
+
+  --color-primary: #02d693;
+  --color-primary-muted: #0b8961;
+  --color-accent: #02d693;
+  --color-on-primary: #101111;
+
+  /* Gallry spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-xxxl: 48px;
+
+  /* Gallry radius */
+  --radius-none: 0;
+  --radius-subtle: 2px;
+  --radius-round: 999px;
+
+  /* Web layout */
+  --page-max-width: 1200px;
+  --page-padding: clamp(16px, 4vw, 48px);
+  --section-spacing: clamp(64px, 8vw, 96px);
+
+  /* Typography */
+  --font-display: "Exo 2", sans-serif;
+  --font-body: "Hanken Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /*
+   * Same hierarchy as Gallry's RN typography,
+   * scaled appropriately for desktop.
+   */
+  --type-hero: clamp(3rem, 5vw, 4.5rem);
+  --type-screen: clamp(2.4rem, 4vw, 3.5rem);
+  --type-section: clamp(1.75rem, 2.6vw, 2.4rem);
+
+  --type-body-large: 17px;
+  --type-body: 15px;
+  --type-body-small: 14px;
+  --type-metadata: 14px;
+}

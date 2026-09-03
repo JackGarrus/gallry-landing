@@ -1,0 +1,20 @@
+export function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-brand">
+        <span className="footer-wordmark">Gallry</span>
+
+        <p>Art without limits</p>
+      </div>
+
+      <nav className="footer-links" aria-label="Footer navigation">
+        <a href="/about">ABOUT</a>
+        <a href="/contact">CONTACT</a>
+        <a href="/privacy">PRIVACY</a>
+        <a href="/impressum">IMPRESSUM</a>
+      </nav>
+
+      <p className="footer-meta">© 2026 GALLRY</p>
+    </footer>
+  );
+}
