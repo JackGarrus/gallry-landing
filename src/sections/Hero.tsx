@@ -1,3 +1,5 @@
+import neraValeScreenshot from "../assets/nera-vale.png";
+
 export default function Hero() {
   return (
     <section className="page-section hero">
@@ -55,7 +57,7 @@ export default function Hero() {
 
       <div className="hero-product">
         <img
-          src="src/assets/artistprofile.png"
+          src={neraValeScreenshot}
           alt="Gallry artist profile preview for Nera Vale"
         />
       </div>
