@@ -624,6 +624,14 @@
   }
 }
 
+.signup-error {
+  margin: var(--space-md) 0 0;
+  color: #ff5c5c;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 18px;
+}
+
 /* =========================================================
    FAQ
    ========================================================= */
