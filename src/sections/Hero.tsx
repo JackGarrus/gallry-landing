@@ -1,4 +1,5 @@
 import neraValeScreenshot from "../assets/nera-vale.png";
+import { track } from "../lib/analytics";
 
 export default function Hero() {
   return (
@@ -48,7 +49,12 @@ export default function Hero() {
             <p className="hero-note"> · Free · Invitations in waves</p>
           </div>
 
-          <a className="primary-cta" href="#join" style={{ fontSize: 18 }}>
+          <a
+            className="primary-cta"
+            href="#join"
+            style={{ fontSize: 18 }}
+            onClick={() => track("Join Beta HERO Click")}
+          >
             Join the beta
           </a>
         </div>

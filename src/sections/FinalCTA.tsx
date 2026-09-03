@@ -1,5 +1,7 @@
 import { useState, type SyntheticEvent } from "react";
+
 import { supabase } from "../lib/supabase";
+import { track } from "../lib/analytics";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -29,7 +31,7 @@ export default function FinalCTA() {
     });
 
     if (error) {
-      // unique violation = email already registered
+      // Email already registered
       if (error.code === "23505") {
         setStatus("success");
         return;
@@ -40,6 +42,7 @@ export default function FinalCTA() {
       return;
     }
 
+    track("Signup Submitted");
     setStatus("success");
   }
 

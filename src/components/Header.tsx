@@ -1,3 +1,5 @@
+import { track } from "../lib/analytics";
+
 export default function Header() {
   return (
     <header className="header">
@@ -5,7 +7,13 @@ export default function Header() {
         GALLRY
       </a>
 
-      <a className="header-cta" href="#join">
+      <a
+        className="header-cta"
+        href="#join"
+        onClick={() => {
+          track("Join Beta HEADER Click");
+        }}
+      >
         Join the beta
       </a>
     </header>
