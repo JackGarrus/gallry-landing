@@ -15,6 +15,10 @@ async function sha256(value) {
 }
 
 function redirect(env, status) {
+  if (status === "confirmed") {
+    return Response.redirect(`${env.APP_URL}/confirmed.html`, 302);
+  }
+
   return Response.redirect(`${env.APP_URL}/?confirmation=${status}#join`, 302);
 }
 
@@ -36,7 +40,9 @@ export async function onRequestGet(context) {
     "select",
     "id,confirmed_at,confirmation_expires_at",
   );
+
   lookupUrl.searchParams.set("confirmation_token_hash", `eq.${tokenHash}`);
+
   lookupUrl.searchParams.set("limit", "1");
 
   const response = await fetch(lookupUrl, {

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gallry — Beta confirmed</title>
+
+    <link rel="icon" href="/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #181c1e;
+        color: #f3f5f4;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        font-family: "Hanken Grotesk", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .header {
+        width: min(calc(100% - 32px), 1200px);
+        height: 72px;
+        margin-inline: auto;
+
+        display: flex;
+        align-items: center;
+
+        border-bottom: 1px solid #373b39;
+      }
+
+      .wordmark {
+        font-family: "Exo 2", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        text-decoration: none;
+        color: #f3f5f4;
+      }
+
+      main {
+        width: min(calc(100% - 32px), 1200px);
+        flex: 1;
+        margin-inline: auto;
+
+        display: flex;
+        align-items: center;
+
+        padding-block: 64px;
+      }
+
+      .confirmation {
+        width: 100%;
+        max-width: 820px;
+      }
+
+      .label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        margin: 0 0 32px;
+
+        color: #858c88;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 14px;
+        line-height: 19px;
+      }
+
+      .label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #373b39;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+
+        font-family: "Exo 2", sans-serif;
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -1px;
+      }
+
+      .copy {
+        max-width: 620px;
+        margin: 24px 0 0;
+
+        color: #b8beba;
+        font-size: 17px;
+        line-height: 25px;
+      }
+
+      .status {
+        margin: 48px 0 0;
+        padding-top: 24px;
+
+        border-top: 1px solid #373b39;
+
+        color: #02d693;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 14px;
+        line-height: 19px;
+      }
+
+      .cta {
+        display: inline-block;
+
+        margin-top: 32px;
+        padding: 14px 18px;
+
+        border: 1px solid #02d693;
+
+        color: #02d693;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 14px;
+
+        text-decoration: none;
+      }
+
+      .cta:hover {
+        background: #02d693;
+        color: #101111;
+      }
+
+      @media (max-width: 600px) {
+        .header,
+        main {
+          width: calc(100% - 32px);
+        }
+
+        .header {
+          height: 64px;
+        }
+
+        main {
+          padding-block: 48px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <a class="wordmark" href="/">Gallry</a>
+    </header>
+
+    <main>
+      <section class="confirmation">
+        <p class="label">PRIVATE BETA / CONFIRMED</p>
+
+        <h1>You're in</h1>
+
+        <p class="copy">
+          Your email is confirmed. We'll send you an invitation when your beta
+          spot is ready.
+        </p>
+
+        <p class="status">INVITATIONS ARE SENT IN WAVES</p>
+
+        <a class="cta" href="/"> [ BACK TO GALLRY ] </a>
+      </section>
+    </main>
+  </body>
+</html>

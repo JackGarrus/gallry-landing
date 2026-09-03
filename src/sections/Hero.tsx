@@ -2,6 +2,7 @@ import neraValeScreenshot from "../assets/nera-vale.png";
 import { track } from "../lib/analytics";
 
 export default function Hero() {
+  const title = "You're an artist, not a content creator".toUpperCase();
   return (
     <section className="page-section hero">
       <div className="hero-copy">
@@ -9,7 +10,7 @@ export default function Hero() {
           00 / WHAT IS GALLRY
         </p>
 
-        <h1 className="hero-title">You're an artist, not a content creator</h1>
+        <h1 className="hero-title">{title}</h1>
 
         <p className="section-copy">
           Gallry gives independent artists a place to show their work properly,
