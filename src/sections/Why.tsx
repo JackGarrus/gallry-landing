@@ -52,12 +52,12 @@ export default function Why() {
 
             <div>
               <span>02</span>
-              <p>Content you actually don't give a fuck about</p>
+              <p>Content you actually don't enjoy</p>
             </div>
 
             <div>
               <span>03</span>
-              <p>An Alghoritm that doesn't give a fuck about you either</p>
+              <p>An algorithm that doesn't give a damn about your interests</p>
             </div>
           </div>
         </div>

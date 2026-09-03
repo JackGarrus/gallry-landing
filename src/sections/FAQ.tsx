@@ -16,7 +16,8 @@ const questions = [
   },
   {
     question: "How much does beta cost?",
-    answer: "Nothing. Gallry is free during beta.",
+    answer:
+      "Nothing. Gallry is free during beta, and will stay free for the ambassadors.",
   },
 ];
 

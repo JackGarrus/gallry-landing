@@ -11,9 +11,8 @@ export default function Hero() {
         <h1 className="hero-title">You're an artist, not a content creator</h1>
 
         <p className="section-copy">
-          Gallry gives independent artists a place to show the work properly —
-          and people a place to discover it without fighting through an
-          engagement-first feed.
+          Gallry gives independent artists a place to show their work properly,
+          and a place to discover it without fighting with a moody algorithm.
         </p>
 
         <div className="hero-audiences">
@@ -25,7 +24,7 @@ export default function Hero() {
             <p>
               You DON'T have to perform for the feed or post the same thing over
               and over, hoping reel #11,000 finally reaches someone who actually
-              gives a shit about your work.
+              would enjoy your work.
             </p>
           </div>
 
@@ -35,8 +34,8 @@ export default function Hero() {
             <h2>Find art without the noise</h2>
 
             <p>
-              Discover artists within your interests without being interrupted
-              by reels that you don't care about.
+              Discover curated artists within your interests without being
+              interrupted by reels that you don't care about.
             </p>
           </div>
         </div>
