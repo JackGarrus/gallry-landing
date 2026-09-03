@@ -16,7 +16,7 @@ async function sha256(value) {
 
 function redirect(env, status) {
   if (status === "confirmed") {
-    return Response.redirect(`${env.APP_URL}/confirmed.html`, 302);
+    return Response.redirect(`${env.APP_URL}/confirmed`, 302);
   }
 
   return Response.redirect(`${env.APP_URL}/?confirmation=${status}#join`, 302);
