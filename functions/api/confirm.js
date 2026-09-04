@@ -15,14 +15,20 @@ async function sha256(value) {
 }
 
 function redirect(env, status) {
+  // First successful confirmation
   if (status === "confirmed") {
     return Response.redirect(`${env.APP_URL}/confirmed?signup=1`, 302);
   }
 
+  // User clicked the same confirmation link again
   if (status === "already-confirmed") {
-    return Response.redirect(`${env.APP_URL}/confirmed`, 302);
+    return Response.redirect(
+      `${env.APP_URL}/?confirmation=already-confirmed`,
+      302,
+    );
   }
 
+  // Expired / invalid link
   return Response.redirect(`${env.APP_URL}/?confirmation=${status}#join`, 302);
 }
 
@@ -61,14 +67,17 @@ export async function onRequestGet(context) {
   const rows = await response.json();
   const signup = rows[0];
 
+  // Token doesn't belong to any signup
   if (!signup) {
     return redirect(env, "invalid");
   }
 
+  // Already confirmed takes precedence over expiration
   if (signup.confirmed_at) {
     return redirect(env, "already-confirmed");
   }
 
+  // Existing signup, but confirmation wasn't completed in time
   if (
     !signup.confirmation_expires_at ||
     new Date(signup.confirmation_expires_at).getTime() < Date.now()
@@ -85,8 +94,6 @@ export async function onRequestGet(context) {
     headers: supabaseHeaders(env),
     body: JSON.stringify({
       confirmed_at: new Date().toISOString(),
-      confirmation_token_hash: null,
-      confirmation_expires_at: null,
     }),
   });
 

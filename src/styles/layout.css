@@ -56,11 +56,23 @@
 
   color: var(--color-text);
 
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: var(--type-screen);
   font-weight: 700;
   line-height: 1.04;
   letter-spacing: -0.6px;
+}
+
+.section-title > span {
+  background: var(--color-accent);
+  color: var(--color-surface);
+
+  box-shadow:
+    0.12em 0 var(--color-accent),
+    -0.12em 0 var(--color-accent);
+
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* Body */

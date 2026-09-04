@@ -6,7 +6,7 @@ export default function Solution() {
       </p>
 
       <h2 className="section-title">
-        The work and your actual interests come first
+        <span>THE WORK AND YOUR ACTUAL INTERESTS COME FIRST</span>
       </h2>
 
       <p className="section-copy solution-intro">

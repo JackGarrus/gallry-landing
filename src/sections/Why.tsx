@@ -1,4 +1,7 @@
 export default function Why() {
+  const title =
+    "Social feeds are built for engagement, not discovery".toUpperCase();
+
   return (
     <section className="page-section why">
       <p className="section-label" style={{ color: "#02d693" }}>
@@ -6,7 +9,7 @@ export default function Why() {
       </p>
 
       <h2 className="section-title">
-        Social feeds are built for engagement, not discovery
+        <span>{title} </span>
       </h2>
 
       <p className="section-copy why-intro">

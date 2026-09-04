@@ -10,7 +10,9 @@ export default function Hero() {
           00 / WHAT IS GALLRY
         </p>
 
-        <h1 className="hero-title">{title}</h1>
+        <h1 className="hero-title">
+          <span>{title}</span>
+        </h1>
 
         <p className="section-copy">
           Gallry gives independent artists a place to show their work properly,

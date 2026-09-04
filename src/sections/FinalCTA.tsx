@@ -90,7 +90,9 @@ export default function FinalCTA() {
     <section id="join" className="page-section final-cta">
       <p className="section-label">PRIVATE BETA</p>
 
-      <h2 className="section-title">Join the beta</h2>
+      <h2 className="section-title">
+        <span>JOIN THE BETA</span>
+      </h2>
 
       <p className="section-copy">
         For independent artists and people looking for independent work worth
