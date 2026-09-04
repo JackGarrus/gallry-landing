@@ -45,10 +45,11 @@ export async function onRequestPost(context) {
 
   const email = body.email?.trim().toLowerCase();
 
-  if (!email || email.length > 320 || !EMAIL_REGEX.test(email)) {
+  if (!email || !EMAIL_REGEX.test(email)) {
     return json({ error: "Invalid email" }, 400);
   }
 
+  // Look for an existing signup
   const lookupUrl = new URL(`${env.SUPABASE_URL}/rest/v1/beta_signups`);
 
   lookupUrl.searchParams.set("select", "id,confirmed_at,confirmation_sent_at");
@@ -67,12 +68,12 @@ export async function onRequestPost(context) {
   const rows = await lookupResponse.json();
   const existing = rows[0];
 
-  // Don't reveal whether the email is already registered
+  // Don't reveal whether an address is already confirmed
   if (existing?.confirmed_at) {
     return json({ ok: true });
   }
 
-  // Don't spam confirmation emails
+  // Avoid repeatedly sending confirmation emails
   if (existing?.confirmation_sent_at) {
     const lastSent = new Date(existing.confirmation_sent_at).getTime();
 
@@ -117,6 +118,7 @@ export async function onRequestPost(context) {
           email,
           confirmation_token_hash: tokenHash,
           confirmation_expires_at: expiresAt,
+
           utm_source: body.utm_source ?? null,
           utm_medium: body.utm_medium ?? null,
           utm_campaign: body.utm_campaign ?? null,
@@ -131,7 +133,12 @@ export async function onRequestPost(context) {
     }
   }
 
-  const confirmationUrl = `${env.APP_URL}/api/confirm?token=${encodeURIComponent(token)}`;
+  // Build the confirmation URL safely
+  const confirmationUrl = new URL("/api/confirm", env.APP_URL);
+
+  confirmationUrl.searchParams.set("token", token);
+
+  const confirmationUrlString = confirmationUrl.toString();
 
   const emailResponse = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -139,110 +146,122 @@ export async function onRequestPost(context) {
       Authorization: `Bearer ${env.RESEND_API_KEY}`,
       "Content-Type": "application/json",
     },
+
     body: JSON.stringify({
       from: "Gallry <no-reply@gallry.cc>",
       to: [email],
+
       subject: "Confirm your Gallry beta signup",
 
       text:
         `Confirm your Gallry beta signup\n\n` +
-        `Someone used this email address to join the Gallry private beta.\n\n` +
-        `Confirm your email:\n${confirmationUrl}\n\n` +
+        `Confirm this email address to join the Gallry private beta.\n\n` +
+        `Confirm your email:\n${confirmationUrlString}\n\n` +
         `This link expires in 24 hours.\n\n` +
         `If this wasn't you, you can ignore this email.`,
 
       html: `
-    <div style="
-      margin:0;
-      padding:40px 24px;
-      background:#181c1e;
-      color:#f3f5f4;
-      font-family:Arial,sans-serif;
-    ">
-      <div style="
-        max-width:560px;
-        margin:0 auto;
-        padding:32px 0;
-        border-top:1px solid #373b39;
-        border-bottom:1px solid #373b39;
-      ">
-        <p style="
-          margin:0 0 40px;
-          color:#02d693;
-          font-family:monospace;
-          font-size:13px;
-          letter-spacing:.8px;
-        ">
-          GALLRY / PRIVATE BETA
-        </p>
+          <div style="
+            margin:0;
+            padding:40px 24px;
+            background:#181c1e;
+            color:#f3f5f4;
+            font-family:Arial,sans-serif;
+          ">
+            <div style="
+              max-width:560px;
+              margin:0 auto;
+              padding:32px 0;
+              border-top:1px solid #373b39;
+              border-bottom:1px solid #373b39;
+            ">
+              <p style="
+                margin:0 0 40px;
+                color:#02d693;
+                font-family:monospace;
+                font-size:13px;
+                letter-spacing:.8px;
+              ">
+                GALLRY / PRIVATE BETA
+              </p>
 
-        <h1 style="
-          margin:0 0 24px;
-          color:#f3f5f4;
-          font-size:30px;
-          line-height:1.15;
-        ">
-          Confirm your email
-        </h1>
+              <h1 style="
+                margin:0 0 24px;
+                color:#f3f5f4;
+                font-size:30px;
+                line-height:1.15;
+              ">
+                Confirm your email
+              </h1>
 
-        <p style="
-          margin:0 0 32px;
-          color:#b8beba;
-          font-size:16px;
-          line-height:1.6;
-        ">
-          Confirm this email address to join the Gallry private beta.
-        </p>
+              <p style="
+                margin:0 0 32px;
+                color:#b8beba;
+                font-size:16px;
+                line-height:1.6;
+              ">
+                Confirm this email address to join the Gallry private beta.
+              </p>
 
-        <p style="margin:0 0 32px;">
-          <a
-            href="${confirmationUrl}"
-            style="
-              display:inline-block;
-              padding:14px 18px;
-              border:1px solid #02d693;
-              color:#02d693;
-              font-family:monospace;
-              font-size:14px;
-              text-decoration:none;
-            "
-          >
-            [ CONFIRM EMAIL ]
-          </a>
-        </p>
+              <p style="margin:0 0 32px;">
+                <a
+                  href="${confirmationUrlString}"
+                  style="
+                    display:inline-block;
+                    padding:14px 18px;
+                    border:1px solid #02d693;
+                    color:#02d693;
+                    font-family:monospace;
+                    font-size:14px;
+                    text-decoration:none;
+                  "
+                >
+                  [ CONFIRM EMAIL ]
+                </a>
+              </p>
 
-        <p style="
-          margin:0;
-          color:#858c88;
-          font-size:13px;
-          line-height:1.6;
-        ">
-          This link expires in 24 hours.<br />
-          If this wasn't you, you can ignore this email.
-        </p>
-      </div>
-    </div>
-  `,
+              <p style="
+                margin:0;
+                color:#858c88;
+                font-size:13px;
+                line-height:1.6;
+              ">
+                This link expires in 24 hours.<br />
+                If this wasn't you, you can ignore this email.
+              </p>
+            </div>
+          </div>
+        `,
     }),
   });
 
   if (!emailResponse.ok) {
     console.error(await emailResponse.text());
 
-    return json({ error: "Confirmation email could not be sent" }, 500);
+    return json(
+      {
+        error: "Confirmation email could not be sent",
+      },
+      500,
+    );
   }
 
+  // Record when the confirmation email was sent
   const sentAtUrl = new URL(`${env.SUPABASE_URL}/rest/v1/beta_signups`);
 
   sentAtUrl.searchParams.set("email", `eq.${email}`);
 
-  await fetch(sentAtUrl, {
+  const sentAtResponse = await fetch(sentAtUrl, {
     method: "PATCH",
     headers: supabaseHeaders(env),
     body: JSON.stringify({
       confirmation_sent_at: new Date().toISOString(),
     }),
   });
+
+  if (!sentAtResponse.ok) {
+    console.error(await sentAtResponse.text());
+  }
 
   return json({ ok: true });
 }

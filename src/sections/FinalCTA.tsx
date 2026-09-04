@@ -71,7 +71,9 @@ export default function FinalCTA() {
       </p>
 
       {status === "success" ? (
-        <p className="signup-success">[ CHECK YOUR INBOX ]</p>
+        <p className="signup-success">
+          [ CHECK YOUR INBOX • IT MIGHT BE IN THE SPAM]
+        </p>
       ) : (
         <>
           <form className="signup-form" onSubmit={handleSubmit}>
