@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    <title>Gallry — Datenschutz</title>
+    <link rel="icon" href="/favicon.ico" />
+    <style>
+      :root {
+        --bg: #181c1e;
+        --surface: #202323;
+        --border: #373b39;
+        --text: #f3f5f4;
+        --soft: #b8beba;
+        --muted: #858c88;
+        --accent: #02d693;
+        --danger: #ff5c5c;
+        --max: 980px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: var(--bg);
+        color: var(--text);
+      }
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          "Hanken Grotesk",
+          Inter,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--text);
+      }
+      .header {
+        width: min(calc(100% - 32px), 1200px);
+        height: 72px;
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+      .wordmark {
+        color: var(--text);
+        font-family: "Exo 2", ui-sans-serif, system-ui, sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.4px;
+      }
+      .back {
+        font-family:
+          "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+      main {
+        width: min(calc(100% - 32px), var(--max));
+        margin-inline: auto;
+        padding: clamp(64px, 8vw, 112px) 0 96px;
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 32px;
+        color: var(--muted);
+        font-family:
+          "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+      .eyebrow::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+      h1 {
+        max-width: 820px;
+        margin: 0 0 56px;
+        font-family:
+          "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: clamp(2.4rem, 5vw, 4.5rem);
+        line-height: 1.02;
+        letter-spacing: -1px;
+      }
+      h1 span {
+        background: var(--accent);
+        color: var(--surface);
+        box-shadow:
+          0.12em 0 var(--accent),
+          -0.12em 0 var(--accent);
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+      section {
+        max-width: 760px;
+        padding: 28px 0;
+        border-top: 1px solid var(--border);
+      }
+      h2 {
+        margin: 0 0 14px;
+        color: var(--text);
+        font-family: "Exo 2", ui-sans-serif, system-ui, sans-serif;
+        font-size: 22px;
+        line-height: 1.25;
+      }
+      p,
+      ul {
+        margin: 0 0 16px;
+        color: var(--soft);
+      }
+      ul {
+        padding-left: 22px;
+      }
+      .meta,
+      .placeholder {
+        font-family:
+          "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+      }
+      .placeholder {
+        color: var(--danger);
+      }
+      .footer {
+        width: min(calc(100% - 32px), 1200px);
+        margin-inline: auto;
+        padding: 32px 0 48px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-family:
+          "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+      }
+      @media (max-width: 600px) {
+        .header {
+          height: 64px;
+        }
+        main {
+          padding-top: 48px;
+        }
+        h1 {
+          margin-bottom: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a class="wordmark" href="/">GALLRY</a>
+      <a class="back" href="/">[ BACK TO GALLRY ]</a>
+    </header>
+
+    <main>
+      <p class="eyebrow">LEGAL / PRIVACY</p>
+      <h1><span>Datenschutzerklärung</span></h1>
+
+      <!-- Replace every [[...]] placeholder and verify the Supabase region before publishing. -->
+
+      <section>
+        <h2>1. Verantwortlicher</h2>
+        <p class="placeholder">
+          Nadia Guarracino<br />
+          <!--   [[LADUNGSFAEHIGE_ANSCHRIFT]]<br /> -->
+          10319<br />
+          Berlin, Deutschland
+        </p>
+        <p>
+          E-Mail:
+          <a class="placeholder" href="mailto:[[CONTACT_EMAIL]]"
+            >[[CONTACT_EMAIL]]</a
+          >
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Hosting und Bereitstellung der Website</h2>
+        <p>
+          Diese Website wird über Cloudflare Pages bereitgestellt. Anbieter ist
+          Cloudflare, Inc. Beim Aufruf der Website können technisch notwendige
+          Verbindungs- und Sicherheitsdaten verarbeitet werden, insbesondere
+          IP-Adresse, Zeitpunkt der Anfrage, angeforderte Ressource, Browser-
+          und Geräteinformationen. Die Verarbeitung dient der sicheren, stabilen
+          und performanten Bereitstellung der Website.
+        </p>
+        <p>
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes
+          Interesse liegt in der sicheren und zuverlässigen Bereitstellung von
+          Gallry.
+        </p>
+        <p>
+          <a href="https://www.cloudflare.com/privacypolicy/" rel="noreferrer"
+            >Cloudflare Privacy Policy</a
+          >
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Private-Beta-Warteliste</h2>
+        <p>
+          Wenn du dich für die private Gallry-Beta anmeldest, verarbeiten wir
+          die von dir angegebene E-Mail-Adresse sowie – sofern vorhanden – die
+          Kampagnenparameter <span class="meta">utm_source</span>,
+          <span class="meta">utm_medium</span> und
+          <span class="meta">utm_campaign</span> sowie den Referrer.
+        </p>
+        <p>
+          Diese Daten verwenden wir, um deine Anmeldung zu bestätigen, dir
+          Beta-Einladungen und beta-bezogene Updates zu senden und zu verstehen,
+          über welche Kampagnen Interessierte Gallry finden.
+        </p>
+        <p>
+          Die Anmeldung erfolgt per Double Opt-In. Erst nachdem du den
+          Bestätigungslink in der E-Mail angeklickt hast, gilt deine Anmeldung
+          als bestätigt.
+        </p>
+        <p>
+          Rechtsgrundlage ist deine Einwilligung gemäß Art. 6 Abs. 1 lit. a
+          DSGVO. Du kannst deine Einwilligung jederzeit mit Wirkung für die
+          Zukunft widerrufen, zum Beispiel per E-Mail an
+          <a class="placeholder" href="mailto:[[CONTACT_EMAIL]]"
+            >[[CONTACT_EMAIL]]</a
+          >.
+        </p>
+        <p>
+          Die Daten werden gespeichert, solange sie für die Warteliste und die
+          Beta-Kommunikation erforderlich sind oder bis du deine Einwilligung
+          widerrufst. Nicht mehr benötigte Daten werden gelöscht, sofern keine
+          gesetzlichen Aufbewahrungspflichten entgegenstehen.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Speicherung der Wartelistendaten — Supabase</h2>
+        <p>
+          Für die Speicherung der Wartelistendaten nutzen wir Supabase.
+          Verarbeitet werden insbesondere E-Mail-Adresse, Bestätigungsstatus,
+          Zeitstempel, gehashte Bestätigungstoken und die oben genannten
+          Kampagneninformationen.
+        </p>
+        <p class="placeholder">Projektregion: [[SUPABASE_REGION]]</p>
+        <p>
+          Die gewählte Supabase-Projektregion bestimmt den primären Speicherort
+          der Projektdaten. Mit Supabase besteht ein Vertrag zur
+          Auftragsverarbeitung nach Art. 28 DSGVO.
+        </p>
+        <p>
+          <a href="https://supabase.com/privacy" rel="noreferrer"
+            >Supabase Privacy</a
+          >
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Bestätigungs- und Beta-E-Mails — Resend</h2>
+        <p>
+          Für den Versand der Double-Opt-In-Bestätigung und späterer
+          beta-bezogener E-Mails nutzen wir Resend, einen Dienst von Plus Five
+          Five, Inc. Dabei werden insbesondere deine E-Mail-Adresse sowie der
+          Inhalt und technische Versandinformationen der Nachricht verarbeitet.
+        </p>
+        <p>
+          Resend speichert Kundendaten nach eigenen Angaben in den USA. Für
+          Übermittlungen aus dem Europäischen Wirtschaftsraum verwendet Resend
+          unter anderem die EU-Standardvertragsklauseln und nimmt am EU-U.S.
+          Data Privacy Framework teil. Mit Resend besteht ein
+          Auftragsverarbeitungsvertrag.
+        </p>
+        <p>
+          Die reine Double-Opt-In-Bestätigung dient der Durchführung deiner
+          angeforderten Anmeldung. Beta-Updates und Einladungen senden wir auf
+          Grundlage deiner Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
+        </p>
+        <p>
+          <a href="https://resend.com/security/gdpr" rel="noreferrer"
+            >Resend GDPR information</a
+          >
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Webanalyse — Plausible Analytics</h2>
+        <p>
+          Wir verwenden Plausible Analytics, um aggregiert zu verstehen, wie die
+          Gallry-Landingpage genutzt wird und welche Kampagnen zu Besuchen,
+          Beta-Anmeldungen und bestätigten Anmeldungen führen.
+        </p>
+        <p>
+          Plausible setzt nach eigenen Angaben keine Cookies, verwendet keine
+          persistenten Identifikatoren und speichert keine IP-Adressen.
+          Besucherdaten werden innerhalb der EU verarbeitet und gespeichert.
+        </p>
+        <p>
+          Erfasst werden unter anderem Seitenaufrufe, Referrer,
+          Kampagnenparameter sowie von uns definierte Ereignisse wie Klicks auf
+          „Join the beta“, abgeschickte Anmeldungen und bestätigte Anmeldungen.
+        </p>
+        <p>
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes
+          Interesse liegt darin, die Nachfrage nach Gallry und die Wirksamkeit
+          unserer Beta-Landingpage datensparsam zu messen.
+        </p>
+        <p>
+          <a href="https://plausible.io/data-policy" rel="noreferrer"
+            >Plausible Data Policy</a
+          >
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Cookies und lokale Speicherung</h2>
+        <p>
+          Gallry verwendet für die in dieser Erklärung beschriebenen
+          Analysezwecke keine Analyse-Cookies. Plausible verwendet keine Cookies
+          oder persistenten Browser-Identifikatoren. Soweit technisch notwendige
+          Speichermechanismen zukünftig hinzukommen, wird diese Erklärung
+          entsprechend aktualisiert.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Empfänger und Auftragsverarbeiter</h2>
+        <ul>
+          <li>Cloudflare — Hosting, CDN und serverseitige Funktionen</li>
+          <li>Supabase — Datenbank für die Beta-Warteliste</li>
+          <li>Resend — Versand von Bestätigungs- und Beta-E-Mails</li>
+          <li>Plausible Analytics — datensparsame Webanalyse</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>9. Deine Rechte</h2>
+        <p>
+          Nach Maßgabe der DSGVO hast du insbesondere das Recht auf Auskunft,
+          Berichtigung, Löschung, Einschränkung der Verarbeitung,
+          Datenübertragbarkeit und Widerspruch. Eine erteilte Einwilligung
+          kannst du jederzeit mit Wirkung für die Zukunft widerrufen.
+        </p>
+        <p>
+          Außerdem hast du das Recht, dich bei einer zuständigen
+          Datenschutzaufsichtsbehörde zu beschweren.
+        </p>
+      </section>
+
+      <section>
+        <h2>10. Änderungen dieser Datenschutzerklärung</h2>
+        <p>
+          Wir aktualisieren diese Datenschutzerklärung, wenn sich die
+          Datenverarbeitung, die eingesetzten Dienstleister oder die rechtlichen
+          Anforderungen ändern.
+        </p>
+      </section>
+
+      <p class="meta">Stand: 4. September 2026</p>
+    </main>
+
+    <footer class="footer">© 2026 GALLRY</footer>
+  </body>
+</html>
