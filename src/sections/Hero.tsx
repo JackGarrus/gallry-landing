@@ -45,17 +45,14 @@ export default function Hero() {
         </div>
 
         <div className="hero-join">
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <p className="hero-join-label" style={{ color: "#02d693" }}>
-              PRIVATE BETA{" "}
-            </p>
-            <p className="hero-note"> · Free · Invitations in waves</p>
+          <div className="hero-join-meta">
+            <p className="hero-join-label">PRIVATE BETA</p>
+            <p className="hero-note">| Free | Invitations in waves</p>
           </div>
 
           <a
-            className="primary-cta"
+            className="primary-cta hero-join-cta"
             href="#join"
-            style={{ fontSize: 18 }}
             onClick={() => track("Join Beta HERO Click")}
           >
             Join the beta
@@ -63,11 +60,17 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-product">
-        <img
-          src={neraValeScreenshot}
-          alt="Gallry artist profile preview for Nera Vale"
-        />
+      <div className="hero-product-container">
+        <div className="hero-product">
+          <img
+            src={neraValeScreenshot}
+            alt="Gallry artist profile preview for Nera Vale"
+          />
+        </div>
+        <div className="hero-product-caption">
+          (BETA PREVIEW / ARTIST PROFILE • a focused profile for music, visual
+          work, releases, selected projects & more)
+        </div>
       </div>
     </section>
   );
