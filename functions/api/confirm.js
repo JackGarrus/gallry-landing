@@ -16,6 +16,10 @@ async function sha256(value) {
 
 function redirect(env, status) {
   if (status === "confirmed") {
+    return Response.redirect(`${env.APP_URL}/confirmed?signup=1`, 302);
+  }
+
+  if (status === "already-confirmed") {
     return Response.redirect(`${env.APP_URL}/confirmed`, 302);
   }
 
@@ -62,7 +66,7 @@ export async function onRequestGet(context) {
   }
 
   if (signup.confirmed_at) {
-    return redirect(env, "confirmed");
+    return redirect(env, "already-confirmed");
   }
 
   if (

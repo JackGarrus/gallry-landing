@@ -16,6 +16,18 @@
       rel="stylesheet"
     />
 
+    <script>
+      window.addEventListener("load", function () {
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get("signup") === "1") {
+          window.plausible?.("Signup Confirmed");
+
+          window.history.replaceState({}, "", window.location.pathname);
+        }
+      });
+    </script>
+
     <style>
       * {
         box-sizing: border-box;
