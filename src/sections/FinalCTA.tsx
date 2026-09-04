@@ -1,13 +1,40 @@
-import { useState, type SyntheticEvent } from "react";
-
+import { useState, useEffect, type SyntheticEvent } from "react";
 import { track } from "../lib/analytics";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
+function getConfirmationError() {
+  const confirmation = new URLSearchParams(window.location.search).get(
+    "confirmation",
+  );
+
+  if (confirmation === "expired") {
+    return "Your confirmation link has expired. Enter your email again to get a new one.";
+  }
+
+  if (confirmation === "invalid") {
+    return "This confirmation link is invalid. Enter your email again.";
+  }
+
+  return "";
+}
+
 export default function FinalCTA() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<FormStatus>("idle");
-  const [errorMessage, setErrorMessage] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState(getConfirmationError);
+
+  const [status, setStatus] = useState<FormStatus>(() =>
+    getConfirmationError() ? "error" : "idle",
+  );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has("confirmation")) {
+      window.history.replaceState({}, "", "/#join");
+    }
+  }, []);
 
   async function handleSubmit(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>,
