@@ -1,5 +1,10 @@
 const questions = [
   {
+    question: "When will the Beta be ready?",
+    answer:
+      "It will be ready by the end of Autumn 2026. If you join the waitlist, you’ll receive an invitation once testing opens, invites are not sent immediately after signing up.",
+  },
+  {
     question: "Who can join Gallry?",
     answer:
       "Gallry starts with musicians, producers, DJs, photographers, designers, illustrators, VJs and video artists. Anyone can join to discover their work.",

@@ -91,7 +91,7 @@ export default function FinalCTA() {
       <p className="section-label">PRIVATE BETA</p>
 
       <h2 className="section-title">
-        <span>JOIN THE BETA</span>
+        <span>JOIN THE WAITLIST</span>
       </h2>
 
       <p className="section-copy">
@@ -123,7 +123,9 @@ export default function FinalCTA() {
             />
 
             <button type="submit" disabled={status === "submitting"}>
-              {status === "submitting" ? "[ JOINING... ]" : "[ JOIN THE BETA ]"}
+              {status === "submitting"
+                ? "[ JOINING... ]"
+                : "[ JOIN THE WAITLIST ]"}
             </button>
           </form>
 

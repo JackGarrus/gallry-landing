@@ -47,15 +47,15 @@ export default function Hero() {
         <div className="hero-join">
           <div className="hero-join-meta">
             <p className="hero-join-label">PRIVATE BETA</p>
-            <p className="hero-note">| Free | Invitations in waves</p>
+            <p className="hero-note">| Free | Beta opens late Autumn 2026</p>
           </div>
 
           <a
             className="primary-cta hero-join-cta"
             href="#join"
-            onClick={() => track("Join Beta HERO Click")}
+            onClick={() => track("Join waitlist HERO Click")}
           >
-            Join the beta
+            Join the waitlist
           </a>
         </div>
       </div>

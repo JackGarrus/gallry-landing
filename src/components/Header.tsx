@@ -37,10 +37,10 @@ export default function Header() {
           className="header-cta"
           href="#join"
           onClick={() => {
-            track("Join Beta HEADER Click");
+            track("Join waitlist HEADER Click");
           }}
         >
-          Join the beta
+          Join the waitlist
         </a>
       )}
     </header>
